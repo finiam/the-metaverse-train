@@ -1,4 +1,5 @@
 import Head from "next/head";
+
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { utils } from "ethers";
@@ -7,6 +8,8 @@ import initializeBlockchain from "../blockchain/initializeBlockchain";
 import MetaverseTrainContract, {
   buildMetaverseTrainContract,
 } from "../blockchain/metaverseTrainContract";
+import horn from "../assets/horn.mp3";
+
 
 const ThreeApp = dynamic(() => import("../components/ThreeApp"), {
   ssr: false,
@@ -57,6 +60,7 @@ function Home() {
 
       <main>
         <ThreeApp />
+
         {isConnected && (
           <div>
             <button
@@ -73,6 +77,9 @@ function Home() {
             </button>
           </div>
         )}
+        <audio id="audio" controls style={{ display: "none" }}>
+          <source src={horn} type="audio/mpeg" />
+        </audio>
       </main>
     </div>
   );
