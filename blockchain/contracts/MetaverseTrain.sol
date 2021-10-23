@@ -13,6 +13,7 @@ contract MetaverseTrain is ERC1155, Ownable {
   uint256 public voteId;
   bool public moving;
   address public admin;
+  uint256 public chooCounter;
 
   struct VoteCounter {
     uint8 left;
@@ -34,6 +35,7 @@ contract MetaverseTrain is ERC1155, Ownable {
     ticketSale = true;
     tokenId = 1;
     voteId = 1;
+    chooCounter = 1;
     moving = true;
     admin = msg.sender;
 
@@ -57,8 +59,7 @@ contract MetaverseTrain is ERC1155, Ownable {
   event Voted(uint256 voteId, uint8 pick);
   event VoteStart(uint256 voteId, string firstChoice, string rightChoice);
   event VoteEnd(uint256 voteId, string winner);
-  event ChooChoo();
-  event ChooChoo2();
+  event ChooChoo(uint256 chooCounter);
 
   modifier onlyAdmin() {
     require(msg.sender == admin);
@@ -68,7 +69,9 @@ contract MetaverseTrain is ERC1155, Ownable {
   function theMostImportantFunctionOfAll() public payable {
     require(msg.value > 0, "Need to send money");
 
-    emit ChooChoo();
+    chooCounter++;
+
+    emit ChooChoo(chooCounter);
   }
 
   function _mintGoldenTicket() internal {
@@ -123,6 +126,10 @@ contract MetaverseTrain is ERC1155, Ownable {
     _startVote();
   }
 
+  function setMoving(bool state) public onlyAdmin {
+    moving = state;
+  }
+
   function _startVote() internal {
     voteId++;
 
@@ -143,7 +150,7 @@ contract MetaverseTrain is ERC1155, Ownable {
       destinations[voteId] = currentCounter.rightDestination;
     }
 
-    moving = false;
+    setMoving(false);
 
     emit VoteEnd(voteId, destinations[voteId]);
   }
