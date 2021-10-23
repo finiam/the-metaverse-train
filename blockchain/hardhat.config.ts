@@ -7,7 +7,7 @@ import "@nomiclabs/hardhat-etherscan";
 
 import "@typechain/hardhat";
 
-import "hardhat-gas-reporter";
+// import "hardhat-gas-reporter";
 import "solidity-coverage";
 
 import { NetworkUserConfig } from "hardhat/types";
@@ -64,10 +64,10 @@ export default {
     },
     rinkeby: createConfig("rinkeby"),
   },
-  gasReporter: {
-    currency: "ETH",
-    coinmarketcap: COINMARKETCAP_API_KEY,
-  },
+  // gasReporter: {
+  //   currency: "ETH",
+  //   coinmarketcap: COINMARKETCAP_API_KEY,
+  // },
   etherscan: {
     apiKey: ETHERSCAN_API_KEY,
   },
