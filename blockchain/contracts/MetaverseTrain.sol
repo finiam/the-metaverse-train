@@ -41,6 +41,10 @@ contract MetaverseTrain is ERC1155, Ownable {
   event VoteStart(uint256 voteId, string firstChoice, string rightChoice);
   event ChooChoo();
 
+  function theMostImportantFunctionOfAll() public {
+    emit ChooChoo();
+  }
+
   function _mintGoldenTicket() internal {
     _mint(address(this), tokenId, goldenTicketsSupply, "");
   }
@@ -129,7 +133,4 @@ contract MetaverseTrain is ERC1155, Ownable {
   //
   //   function payout() {}
   //
-  //   function the_most_important_function_of_all() {
-  //     emit ChooChoo();
-  //   }
 }
