@@ -1,0 +1,50 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: MetaverseTrain
+    network: rinkeby
+    source:
+      address: "0xBe65426a8d5A852e5d8edc408Afd4C9fDE586c75"
+      abi: MetaverseTrain
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - ApprovalForAll
+        - ChooChoo
+        - GoldenTicketAssigned
+        - OwnershipTransferred
+        - TransferBatch
+        - TransferSingle
+        - URI
+        - VoteEnd
+        - VoteStart
+        - Voted
+      abis:
+        - name: MetaverseTrain
+          file: ./abis/MetaverseTrain.json
+      eventHandlers:
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: ChooChoo(uint256)
+          handler: handleChooChoo
+        - event: GoldenTicketAssigned(address)
+          handler: handleGoldenTicketAssigned
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: TransferBatch(indexed address,indexed address,indexed address,uint256[],uint256[])
+          handler: handleTransferBatch
+        - event: TransferSingle(indexed address,indexed address,indexed address,uint256,uint256)
+          handler: handleTransferSingle
+        - event: URI(string,indexed uint256)
+          handler: handleURI
+        - event: VoteEnd(uint256,string)
+          handler: handleVoteEnd
+        - event: VoteStart(uint256,string,string)
+          handler: handleVoteStart
+        - event: Voted(uint256,uint8)
+          handler: handleVoted
+      file: ./src/mapping.ts
