@@ -63,6 +63,14 @@ describe("MetaverseTrain", function () {
     });
   });
 
+  describe("theMostImportantFunctionOfAll", function () {
+    it("choo choos", async function () {
+      const tx = this.train.theMostImportantFunctionOfAll({ value: 1 });
+
+      expect(await tx).to.emit(this.train, "ChooChoo");
+    });
+  });
+
   // describe("deposit", function () {
   //   it("Should deposit the amount given", async function () {
   //     const amount = 1;

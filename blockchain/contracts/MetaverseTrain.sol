@@ -58,6 +58,7 @@ contract MetaverseTrain is ERC1155, Ownable {
   event VoteStart(uint256 voteId, string firstChoice, string rightChoice);
   event VoteEnd(uint256 voteId, string winner);
   event ChooChoo();
+  event ChooChoo2();
 
   modifier onlyAdmin() {
     require(msg.sender == admin);
@@ -65,6 +66,8 @@ contract MetaverseTrain is ERC1155, Ownable {
   }
 
   function theMostImportantFunctionOfAll() public payable {
+    require(msg.value > 0, "Need to send money");
+
     emit ChooChoo();
   }
 

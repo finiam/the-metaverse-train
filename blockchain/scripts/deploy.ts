@@ -14,19 +14,19 @@ async function main(): Promise<void> {
   // await hre.run('compile');
 
   // We get the contract to deploy
-  const Greeter = await hre.ethers.getContractFactory("Greeter");
-  const greeter = await Greeter.deploy("Hello, Hardhat!");
+  const MetaverseTrain = await hre.ethers.getContractFactory("MetaverseTrain");
+  const train = await MetaverseTrain.deploy("10", "2", "");
 
-  await greeter.deployed();
+  await train.deployed();
 
-  console.log("Greeter deployed to:", greeter.address);
+  console.log("Train deployed to:", train.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.
 main()
   .then(() => process.exit(0))
-  .catch((error) => {
+  .catch(error => {
     console.error(error);
     process.exit(1);
   });
