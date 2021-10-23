@@ -28,6 +28,41 @@ describe("MetaverseTrain", function () {
     });
   });
 
+  describe("vote", function () {
+    it("should block votes when sender doesn't have a Golden Ticket", async function () {
+      const tx = this.train.connect(this.otherUser).vote(1);
+
+      await expect(tx).to.be.revertedWith("You need a Golden Ticket in order to vote.");
+    });
+
+    it("should block votes when the train is not moving", async function () {
+      this.train.settlement();
+      this.train.connect(this.deployer).buyGoldenTicket({ value: 2 });
+
+      const tx = this.train.connect(this.deployer).vote(1);
+
+      await expect(tx).to.be.revertedWith("You can only vote while the train is moving.");
+    });
+
+    it("should revert transaction when a wrong pick is used", async function () {
+      this.train.connect(this.deployer).buyGoldenTicket({ value: 2 });
+
+      const tx = this.train.connect(this.deployer).vote(3);
+
+      await expect(tx).to.be.revertedWith("Wrong pick");
+    });
+
+    it("should set the pick when vote is valid", async function () {
+      this.train.connect(this.deployer).buyGoldenTicket({ value: 2 });
+      const voteId = await this.train.voteId();
+      const choices = await this.train.choices(voteId);
+      const previousVotes = choices[1];
+      await this.train.connect(this.deployer).vote(1);
+      const newChoices = await this.train.choices(voteId);
+      expect(newChoices[1]).to.equal(previousVotes + 1);
+    });
+  });
+
   // describe("deposit", function () {
   //   it("Should deposit the amount given", async function () {
   //     const amount = 1;
