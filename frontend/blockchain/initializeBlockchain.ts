@@ -7,6 +7,5 @@ export default async function initializeBlockchain() {
   const provider = new providers.Web3Provider(web3Provider);
   const signer = await provider.getSigner();
   const currentAccount = await signer.getAddress();
-
   return { provider, currentAccount };
 }
