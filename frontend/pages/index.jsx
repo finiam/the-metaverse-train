@@ -1,5 +1,9 @@
 import Head from "next/head";
-import ThreeApp from "../components/ThreeApp";
+import dynamic from 'next/dynamic'
+
+const ThreeApp = dynamic(() => import("../components/ThreeApp"), {
+  ssr: false,
+});
 
 function Home() {
   return (

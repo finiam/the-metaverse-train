@@ -11,7 +11,7 @@ const Train = () => {
     to: { position: [0, 0, 1] },
     loop: { reverse: true },
     config: {
-      duration: 100,
+      duration: 120,
       mass: 10,
       tension: 1000,
       friction: 300,
@@ -21,7 +21,7 @@ const Train = () => {
   if (!asset) return <>Error</>;
 
   return (
-    <group>
+    <animated.group>
       {/* @ts-ignore */}
       <animated.mesh
         visible
@@ -34,7 +34,7 @@ const Train = () => {
         <animated.primitive attach="geometry" object={asset} />
         <animated.meshPhongMaterial attach="material" color={"#333333"} />
       </animated.mesh>
-    </group>
+    </animated.group>
   );
 };
 
