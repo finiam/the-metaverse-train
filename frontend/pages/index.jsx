@@ -10,7 +10,6 @@ import MetaverseTrainContract, {
 } from "../blockchain/metaverseTrainContract";
 import horn from "../assets/horn.mp3";
 
-
 const ThreeApp = dynamic(() => import("../components/ThreeApp"), {
   ssr: false,
 });
@@ -19,6 +18,7 @@ function Home() {
   const [currentAccount, setCurrentAccount] = useState(null);
   const [provider, setProvider] = useState(null);
   const [MetaverseTrainContract, setMetaverseTrainContract] = useState(null);
+  const [moving, setMoving] = useState(true)
 
   useEffect(() => {
     initializeBlockchain().then(({ provider, currentAccount }) => {
@@ -42,7 +42,7 @@ function Home() {
   };
 
   return (
-    <div className="w-screen h-screen">
+    <div className="w-screen h-screen static">
       <Head>
         <title>Train to Metaverse</title>
         <link rel="icon" href="/favicon.ico" />
@@ -59,7 +59,25 @@ function Home() {
       </style>
 
       <main>
-        <ThreeApp />
+        {!moving && (
+          <h1
+            style={{
+              position: "absolute",
+              top: "40%",
+              left: "10%",
+              zIndex: "1000",
+              fontFamily: "helvetica",
+              fontSize: "60pt",
+              fontStyle: "italic",
+              color: "white",
+              textShadow: "-4px 4px #333333"
+            }}
+          >
+            {" "}
+            LISBON{" "}
+          </h1>
+        )}
+        <ThreeApp moving={moving} />
 
         {isConnected && (
           <div>
@@ -74,6 +92,19 @@ function Home() {
               }}
             >
               CHUU CHUU
+            </button>
+            <button
+              onClick={() => setMoving((prev) => !prev)}
+              style={{
+                position: "absolute",
+                width: "100px",
+                height: "50px",
+
+                top: "0",
+                left: "100px"
+              }}
+            >
+              MOVE
             </button>
           </div>
         )}

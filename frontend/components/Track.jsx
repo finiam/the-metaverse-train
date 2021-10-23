@@ -1,24 +1,24 @@
 import { animated, useSpring } from "@react-spring/three";
 import { useEffect, useState } from "react";
 
-const Track = ({ asset, offset, color }) => {
-  const positionSpring = useSpring(
-    {
-      from: { position: [27, 40+offset, 0] },
-      to: { position: [27, -150+offset, 0] },
-      config: {
-        duration: 4000,
-      },
-      loop: true,
-    }
-  );
+const Track = ({ asset, offset, color, moving }) => {
+  const positionSpring = useSpring({
+    from: { position: [27, 40 + offset, 0] },
+    to: { position: [27, -150 + offset, 0] },
+    config: {
+      duration: 4000,
+    },
+    loop: true,
+  });
 
   if (!asset) {
     return <></>;
   }
 
   return (
-    <animated.group {...positionSpring}>
+    <animated.group
+      position={moving ? positionSpring.position : [27, 40 + offset, 0]}
+    >
       <animated.mesh
         visible
         castShadow

@@ -6,7 +6,7 @@ import Field from "./Field";
 import CameraControls from "./CameraControls";
 import { useEffect, useState } from "react";
 
-const ThreeApp = () => {
+const ThreeApp = ({ moving }) => {
   const [isMounted, setMount] = useState(false);
 
   useEffect(() => {
@@ -24,8 +24,7 @@ const ThreeApp = () => {
         >
           <SkyBox />
           <Lighting />
-          <Train />
-          <Field />
+          <Field location={moving ? "trees" : "city"} />
           <CameraControls />
         </Canvas>
       )}

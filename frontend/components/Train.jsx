@@ -4,7 +4,7 @@ import useAsset from "../hooks/useAsset";
 import train from "../assets/train.stl";
 import smoke from "../assets/smoke.stl";
 
-const Train = () => {
+const Train = ({moving}) => {
   const asset = useAsset(train);
   const smokeAsset = useAsset(smoke);
   const [showSmoke, setShowSmoke] = useState(false);
@@ -40,7 +40,7 @@ const Train = () => {
   const positionSpring = useSpring({
     from: { position: [0, 0, 0] },
     to: { position: [0, 0, 2] },
-    loop: { reverse: true },
+    loop: moving ? { reverse: true } : false,
     config: {
       duration: 200,
       mass: 10,
