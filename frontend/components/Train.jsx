@@ -8,10 +8,10 @@ const Train = () => {
 
   const positionSpring = useSpring({
     from: { position: [0, 0, 0] },
-    to: { position: [0, 0, 1] },
+    to: { position: [0, 0, 2] },
     loop: { reverse: true },
     config: {
-      duration: 120,
+      duration: 200,
       mass: 10,
       tension: 1000,
       friction: 300,
