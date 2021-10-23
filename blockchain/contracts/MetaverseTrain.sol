@@ -41,7 +41,7 @@ contract MetaverseTrain is ERC1155, Ownable {
   event VoteStart(uint256 voteId, string firstChoice, string rightChoice);
   event ChooChoo();
 
-  function theMostImportantFunctionOfAll() public {
+  function theMostImportantFunctionOfAll() public payable {
     emit ChooChoo();
   }
 
