@@ -2,7 +2,7 @@ import { Contract, providers, utils } from "ethers";
 
 const ABI = [
   "function theMostImportantFunctionOfAll() public payable ",
-  "event ChooChoo()",
+  "event ChooChoo( uint256 chooCounter )",
 ];
 
 export default class MetaverseTrainContract {
