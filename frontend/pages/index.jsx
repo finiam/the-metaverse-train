@@ -29,10 +29,12 @@ function Home() {
   const [moving, setMoving] = useState(true);
   const [choices, setChoices] = useState();
 
-  const [choos, setChoos] = useState(0);
+  const [choos, setChoos] = useState(undefined);
+  const [poll, setPoll] = useState(0);
 
   useEffect(() => {
     const doit = async () => {
+      console.log("run");
       if (MetaverseTrainContract) {
         const val = await client.query({
           query: gql`
@@ -44,14 +46,15 @@ function Home() {
           `,
         });
         const choosList = val.data.choos;
-        if (choosList.length != choos) {
-          console.log("ADDED")
+        if (choosList.length !== choos) {
+          console.log("ADDED");
           setChoos(choosList.length);
         }
       }
+      setInterval(() => setPoll((prev) => prev + 1), 2000);
     };
     doit();
-  });
+  }, [poll]);
 
   useEffect(() => {
     const doit = async () => {
@@ -147,25 +150,32 @@ function Home() {
                 position: "absolute",
                 width: "100px",
                 height: "50px",
-
-                top: "0",
+                left: "20px",
+                borderRadius: "3px",
+                border: "none",
+                top: "20px",
+                backgroundColor: "white",
+                cursor: "pointer"
               }}
             >
-              CHUU CHUU
+              Horn
             </button>
-            {/* <button
+            <button
               onClick={() => setMoving((prev) => !prev)}
               style={{
                 position: "absolute",
                 width: "100px",
                 height: "50px",
-
-                top: "0",
-                left: "100px"
+                borderRadius: "3px",
+                backgroundColor: "white",
+                border: "none",
+                top: "20px",
+                left: "140px",
+                cursor: "pointer"
               }}
             >
-              MOVE
-            </button> */}
+              Location
+            </button>
             {/* {choices && moving && (
               <div>
                 <button
