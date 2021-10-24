@@ -37,24 +37,21 @@ function Home() {
         const val = await client.query({
           query: gql`
             {
-              choos(first: 5) {
+              choos {
                 id
               }
             }
           `,
         });
-        const choos = val.data.choos;
-        setChoos(choos.length);
+        const choosList = val.data.choos;
+        if (choosList.length != choos) {
+          console.log("ADDED")
+          setChoos(choosList.length);
+        }
       }
     };
     doit();
   });
-
-  useEffect(() => {
-    if(choos > 0) {
-
-    }
-  }, [choos]);
 
   useEffect(() => {
     const doit = async () => {
@@ -140,7 +137,7 @@ function Home() {
             LISBON{" "}
           </h1>
         )}
-        <ThreeApp moving={moving}/>
+        <ThreeApp moving={moving} choos={choos} />
 
         {isConnected && (
           <div>

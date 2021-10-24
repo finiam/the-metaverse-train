@@ -8,7 +8,7 @@ import Tunnel from "./Tunnel";
 import City from "./City";
 import Train from "./Train";
 
-const Field = ({ location = "trees" }) => {
+const Field = ({ location = "trees", choos }) => {
   const treeAsset1 = useAsset(tree);
   const [treeAsset2, setTreeAsset2] = useState();
   const [treeAsset3, setTreeAsset3] = useState();
@@ -32,7 +32,7 @@ const Field = ({ location = "trees" }) => {
       )}
       {location == "tunnel" && <Tunnel />}
       {location == "city" && <City name="lisbon" />}
-      <Train moving={location !== "city"} />
+      <Train moving={location !== "city"} choos={choos} />
       <TrainTracks moving={location !== "city"}/>
       <mesh visible position={[0, 100, 0]} rotation={[Math.PI / 2, 0, 0]}>
         <planeBufferGeometry attach="geometry" args={[100, 200]} />

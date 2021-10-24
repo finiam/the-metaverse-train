@@ -4,20 +4,36 @@ import useAsset from "../hooks/useAsset";
 import train from "../assets/train.stl";
 import smoke from "../assets/smoke.stl";
 
-const Train = ({moving}) => {
+const Train = ({ moving, choos }) => {
   const asset = useAsset(train);
   const smokeAsset = useAsset(smoke);
   const [showSmoke, setShowSmoke] = useState(false);
 
+  // useEffect(() => {
+  //   document.addEventListener("keydown", function (e) {
+  //     if (e.key == " ") {
+  //       setShowSmoke(true);
+  //       document.getElementById("audio").play();
+  //       api.start(smokeOptions);
+  //     }
+  //   });
+  // }, []);
+
   useEffect(() => {
-    document.addEventListener("keydown", function (e) {
-      if (e.key == " ") {
-        setShowSmoke(true);
-        document.getElementById("audio").play();
-        api.start(smokeOptions);
-      }
-    });
-  }, []);
+    if (choos > 0) {
+      chooItUp();
+    }
+  }, [choos]);
+
+  const chooItUp = () => {
+    setShowSmoke(true);
+    try {
+      document.getElementById("audio").play();
+    } catch (e) {
+      console.log("whatever");
+    }
+    api.start(smokeOptions);
+  };
 
   const smokeOptions = {
     from: { position: [0, 13, 35], opacity: 0.0 },
