@@ -1,3 +1,12 @@
 type Choo @entity {
   id: ID!
 }
+
+type VoteCounter @entity {
+  id: ID!
+  left: BigInt!
+  right: BigInt!
+  leftDestination: String!
+  rightDestination: String!
+  done: Boolean!
+}

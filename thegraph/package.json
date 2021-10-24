@@ -10,7 +10,9 @@
     "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 ZePedroResende/MetaverseTrain"
   },
   "dependencies": {
+    "@apollo/client": "^3.4.16",
     "@graphprotocol/graph-cli": "0.22.4",
-    "@graphprotocol/graph-ts": "0.22.1"
+    "@graphprotocol/graph-ts": "0.22.1",
+    "graphql": "^15.6.1"
   }
 }
