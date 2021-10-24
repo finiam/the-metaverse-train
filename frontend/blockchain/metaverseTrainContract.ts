@@ -2,6 +2,7 @@ import { Contract, providers, utils } from "ethers";
 
 const ABI = [
   "function theMostImportantFunctionOfAll() public payable ",
+  "function buyGoldenTicket() public payable ",
   "event ChooChoo( uint256 chooCounter )",
   "function vote(uint8 pick) public",
   "event Voted(uint256 voteId, uint8 pick)",
@@ -31,6 +32,12 @@ export default class MetaverseTrainContract {
 
   async chooChoo() {
     return this.writeContract.theMostImportantFunctionOfAll({
+      value: utils.parseEther("0.001"),
+    });
+  }
+
+  async buyGoldenTicket() {
+    return this.writeContract.buyGoldenTicket({
       value: utils.parseEther("0.001"),
     });
   }

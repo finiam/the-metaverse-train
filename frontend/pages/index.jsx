@@ -155,7 +155,7 @@ function Home() {
                 border: "none",
                 top: "20px",
                 backgroundColor: "white",
-                cursor: "pointer"
+                cursor: "pointer",
               }}
             >
               Horn
@@ -171,10 +171,30 @@ function Home() {
                 border: "none",
                 top: "20px",
                 left: "140px",
-                cursor: "pointer"
+                cursor: "pointer",
               }}
             >
               Location
+            </button>
+
+            <button
+              onClick={() =>
+                MetaverseTrainContract &&
+                MetaverseTrainContract.buyGoldenTicket()
+              }
+              style={{
+                position: "absolute",
+                width: "200px",
+                height: "50px",
+                borderRadius: "3px",
+                backgroundColor: "white",
+                border: "none",
+                bottom: "20px",
+                left: "20px",
+                cursor: "pointer",
+              }}
+            >
+              Buy your Golden Ticket™!
             </button>
             {/* {choices && moving && (
               <div>
