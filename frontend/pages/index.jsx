@@ -184,7 +184,7 @@ function Home() {
               }
               style={{
                 position: "absolute",
-                width: "200px",
+                width: "400px",
                 height: "50px",
                 borderRadius: "3px",
                 backgroundColor: "white",
@@ -192,9 +192,10 @@ function Home() {
                 bottom: "20px",
                 left: "20px",
                 cursor: "pointer",
+                fontSize: "20pt"
               }}
             >
-              Buy your Golden Ticket™!
+              Buy your Golden Ticket™! 🎟
             </button>
             {/* {choices && moving && (
               <div>
